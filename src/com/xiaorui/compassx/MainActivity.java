@@ -41,7 +41,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         
 		// 初始化接口，应用启动的时候调用
 		// 参数：appId, appSecret, 调试模式
-		AdManager.getInstance(this).init("85aa56a59eac8b3d", "a14006f66f58d5d7", false);				
+		AdManager.getInstance(this).init("0a70120469c410e6", "bcac8802bd2f92d0", false);				
 		RelativeLayout adLayout=(RelativeLayout)findViewById(R.id.AdLayout);
 		DiyBanner banner = new DiyBanner(this, DiyAdSize.SIZE_MATCH_SCREENx32);
 		adLayout.addView(banner);
@@ -114,7 +114,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 			.setTitle("ABOUT")
 			.setMessage("Compass V1.10\n" +
 					"Copyright (c) 2014\n\n" +
-					"Email: rdryan@sina.com\n")
+					"rdryan@sina.com\n")
 			.setPositiveButton("OK",null)
 			.show();
 		}
