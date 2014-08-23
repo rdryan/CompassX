@@ -1,5 +1,8 @@
 package com.xiaorui.compassx;
 
+import com.samsung.android.sdk.remotesensor.Srs;
+import com.samsung.android.sdk.remotesensor.SrsRemoteSensorManager;
+
 import net.youmi.android.AdManager;
 import net.youmi.android.diy.banner.DiyAdSize;
 import net.youmi.android.diy.banner.DiyBanner;
@@ -31,12 +34,20 @@ public class MainActivity extends Activity implements SensorEventListener {
 	private SharedPreferences prefs;
 	private long waitTime = 2000;
 	private long touchTime = 0;
+	
+	//use SAMSUNG SDK
+	static SrsRemoteSensorManager		mServiceManager = null;
+	Srs								remoteSensor = null;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		//use SAMSUNG SDK, but it's useless
+		remoteSensor = new Srs();
+
         prefs = getSharedPreferences("data", MODE_PRIVATE);
         
 		// 初始化接口，应用启动的时候调用
@@ -112,7 +123,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 		if (item.getItemId() == R.id.action_about){	
 			new AlertDialog.Builder(this)
 			.setTitle("ABOUT")
-			.setMessage("Compass V1.10\n" +
+			.setMessage("Compass V2.0\n" +
 					"Copyright (c) 2014\n\n" +
 					"rdryan@sina.com\n")
 			.setPositiveButton("OK",null)
