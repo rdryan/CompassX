@@ -6,16 +6,17 @@
     tools:context=".MainActivity" >
     
     <LinearLayout android:id="@+id/ImgLayout"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
 		android:orientation="horizontal"
-		android:gravity="center_horizontal">
+		android:gravity="center_vertical">
 	</LinearLayout>
     
     <RelativeLayout android:id="@+id/AdLayout"
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
+		android:layout_height="wrap_content"		
+        android:orientation="vertical"
+		android:layout_alignParentTop="true"
 		android:gravity="center_horizontal">
 	</RelativeLayout>
 

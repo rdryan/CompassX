@@ -1,12 +1,12 @@
 package com.xiaorui.compassx;
 
-import com.samsung.android.sdk.remotesensor.Srs;
-import com.samsung.android.sdk.remotesensor.SrsRemoteSensorManager;
+import com.samsung.android.sdk.multiwindow.SMultiWindow;
 
 import net.youmi.android.AdManager;
+import net.youmi.android.banner.AdSize;
+import net.youmi.android.banner.AdView;
 import net.youmi.android.diy.banner.DiyAdSize;
 import net.youmi.android.diy.banner.DiyBanner;
-
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -35,28 +35,30 @@ public class MainActivity extends Activity implements SensorEventListener {
 	private long waitTime = 2000;
 	private long touchTime = 0;
 	
-	//use SAMSUNG SDK
-	static SrsRemoteSensorManager		mServiceManager = null;
-	Srs								remoteSensor = null;
-
+	private SMultiWindow mMultiWindow = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		//use SAMSUNG SDK, but it's useless
-		remoteSensor = new Srs();
-
+        mMultiWindow = new SMultiWindow();
+		
         prefs = getSharedPreferences("data", MODE_PRIVATE);
         
 		// 初始化接口，应用启动的时候调用
 		// 参数：appId, appSecret, 调试模式
-		AdManager.getInstance(this).init("0a70120469c410e6", "bcac8802bd2f92d0", false);				
+		AdManager.getInstance(this).init("0a70120469c410e6", "bcac8802bd2f92d0", false);
+		
+		//LinearLayout adLayout=(LinearLayout)findViewById(R.id.AdLayout);
+		//DiyBanner banner = new DiyBanner(this, DiyAdSize.SIZE_MATCH_SCREENx32);
+		//adLayout.addView(banner);
+		
+		// 实例化广告条
+		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
 		RelativeLayout adLayout=(RelativeLayout)findViewById(R.id.AdLayout);
-		DiyBanner banner = new DiyBanner(this, DiyAdSize.SIZE_MATCH_SCREENx32);
-		adLayout.addView(banner);
-        
+		adLayout.addView(adView);
+		      
 		// Create new instance of custom Rose and set it on the screen
 		LinearLayout ImgLayout=(LinearLayout)findViewById(R.id.ImgLayout);
 	    rose = new Rose(this);
@@ -184,5 +186,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 	    }else {  
 	        super.onBackPressed();  
 	    }  
-	}  
+	}
+	
+    
 }
