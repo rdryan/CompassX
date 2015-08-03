@@ -14,7 +14,9 @@ import android.content.res.Configuration;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -23,7 +25,8 @@ import android.widget.Toast;
 public class MainActivity extends Activity implements SensorEventListener {
 	private SensorManager sensorManager;
 	private Sensor sensor;
-	private Rose rose;
+	Rose rose;
+	FrameLayout bgLayout;
 	private SharedPreferences prefs;
 	private long waitTime = 2000;
 	private long touchTime = 0;
@@ -37,10 +40,17 @@ public class MainActivity extends Activity implements SensorEventListener {
         prefs = getSharedPreferences("data", MODE_PRIVATE);        
 		      
 		// Create new instance of custom Rose and set it on the screen
-		LinearLayout ImgLayout=(LinearLayout)findViewById(R.id.ImgLayout);
-	    rose = new Rose(this);
-	    ImgLayout.addView(rose);
+		//LinearLayout ImgLayout=(LinearLayout)findViewById(R.id.ImgLayout);        
+	    //rose = new Rose(this);
+	    //ImgLayout.addView(rose);
 	    //setContentView(rose);
+        
+		bgLayout=(FrameLayout)findViewById(R.id.bg);
+		bgLayout.setBackgroundColor(Color.WHITE);
+        
+        rose = (Rose) findViewById(R.id.compass_pointer);
+        rose.setImageResource(R.drawable.compass);
+        
 	    
 	    // Get sensor and sensor manager
 	    sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -131,9 +141,9 @@ public class MainActivity extends Activity implements SensorEventListener {
 	public void setBackgroundWhiteBlack(boolean background) {
         
         if (background) {
-        	rose.setBackgroundColor(Color.WHITE);
+        	bgLayout.setBackgroundColor(Color.WHITE);
         } else {
-        	rose.setBackgroundColor(Color.BLACK);
+        	bgLayout.setBackgroundColor(Color.BLACK);
         }
 	}
 	

@@ -4,30 +4,42 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.widget.ImageView;
 
 public class Rose extends ImageView {
-	int direction = 0;
-	int backgroundcolor = Color.BLACK;
+	int direction;
 	//Paint paint = new Paint(); //设置一个笔刷大小是3的黄色的画笔    
 	
 	public Rose(Context context) {
-	  super(context);
-	  this.setImageResource(R.drawable.compassrose);
+		super(context);
+		direction = 0;
 	}
+	  
+	public Rose(Context context, AttributeSet attrs) {
+		super(context, attrs); 
+		direction = 0;  
+	}
+	
+	public Rose(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		direction = 0;
+	}	
+	
 	
 	// Called when component is to be drawn
 	@Override
 	public void onDraw(Canvas canvas) {
+			  
 	  int height = this.getHeight();
 	  int width = this.getWidth();
-
-      //paint.setColor(Color.YELLOW);
-	  //canvas.drawText("TEST", 100, 100, paint);
 	  
 	  canvas.rotate(direction, width/2, height/2);
-	  canvas.drawColor(backgroundcolor);
-
+	  
+      //paint.setColor(Color.GREEN);
+	  //canvas.drawText("TEST", 100, 100, paint);
+	  
 	  super.onDraw(canvas);
 	}
 	
@@ -37,10 +49,6 @@ public class Rose extends ImageView {
 	  this.invalidate(); // request to be redrawn 
 	}
 	
-	public void setBackgroundColor(int color) {
-		this.backgroundcolor = color;
-		this.invalidate();
-	}
 	
 	  
 }
