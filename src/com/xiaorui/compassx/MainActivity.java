@@ -112,7 +112,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 		if (item.getItemId() == R.id.action_about){	
 			new AlertDialog.Builder(this)
 			.setTitle("ABOUT")
-			.setMessage("Compass V1.1\n" +
+			.setMessage("Compass V1.2\n" +
 					"Copyright (c) 2015\n\n" +
 					"rdryan@sina.com\n")
 			.setPositiveButton("OK",null)
